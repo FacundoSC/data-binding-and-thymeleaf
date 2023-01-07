@@ -25,12 +25,6 @@ public class FormController {
   public String procesorForm(@Valid Usuario usuario, BindingResult result, Model model) {
     model.addAttribute("usuario", usuario);
     if (result.hasErrors()) {
-      Map<String, String> errores = new HashMap<>();
-      result.getFieldErrors().forEach(error -> {
-        errores.put(error.getField(), "Campo: ".concat(error.getField())
-            .concat(" ").concat(error.getDefaultMessage()));
-      });
-      model.addAttribute("error", errores);
       return "form";
     }
     return "resultado";
