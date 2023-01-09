@@ -1,23 +1,24 @@
 package com.bolsadeideas.form.app.model;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class Usuario {
 
   private String  identificador;
   @NotEmpty
   private String nombre;
-
-  public String getIdentificador() {
-    return identificador;
-  }
-
-  public void setIdentificador(String identificador) {
-    this.identificador = identificador;
-  }
-
   @NotEmpty
   private String apellido;
+  @NotEmpty
+  @Size(min = 3,max = 8)
+  private String username;
+  @NotEmpty
+  private String password;
+  @NotEmpty
+  @Email
+  private String email;
 
   public String getNombre() {
     return nombre;
@@ -35,12 +36,13 @@ public class Usuario {
     this.apellido = apellido;
   }
 
-  @NotEmpty
-  private String username;
-  @NotEmpty
-  private String password;
-  @NotEmpty
-  private String email;
+  public String getIdentificador() {
+    return identificador;
+  }
+
+  public void setIdentificador(String identificador) {
+    this.identificador = identificador;
+  }
 
   public String getUsername() {
     return username;
