@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -17,7 +19,13 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("user")
 public class FormController {
   @Autowired
-  private UsuarioValidation usuarioValidation;
+  private UsuarioValidation validation;
+
+
+  @InitBinder
+  public void initBinder(WebDataBinder binder){
+    binder.addValidators(validation);
+  }
 
 
   @GetMapping("/form")
@@ -32,7 +40,6 @@ public class FormController {
 
   @PostMapping("/resultado")
   public String procesorForm(@Valid @ModelAttribute("user") Usuario usuario, BindingResult result, Model model, SessionStatus sessionStatus) {
-   usuarioValidation.validate(usuario, result);
     model.addAttribute("user", usuario);
     if (result.hasErrors()) {
       return "form";
