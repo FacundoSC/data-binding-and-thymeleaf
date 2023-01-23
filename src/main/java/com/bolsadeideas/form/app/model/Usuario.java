@@ -1,11 +1,13 @@
 package com.bolsadeideas.form.app.model;
 
 import com.bolsadeideas.form.app.validation.IdentificadorRegex;
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Usuario {
 
@@ -15,15 +17,32 @@ public class Usuario {
 
   private String nombre;
  // @NotEmpty
-  private String apellido;
+ private String apellido;
   @NotBlank
-  @Size(min = 3,max = 8)
+  @Size(min = 3, max = 8)
   private String username;
   //@NotEmpty
   private String password;
   //@NotEmpty
   //@Email
   private String email;
+
+  @NotNull
+  @Min(5)
+  @Max(5000)
+  private Integer cuenta;
+
+  @NotNull
+  @DateTimeFormat(pattern = "yyyy/MM/dd")
+  private Date fechaNacimiento;
+
+  public Date getFechaNacimiento() {
+    return fechaNacimiento;
+  }
+
+  public void setFechaNacimiento(Date fechaNacimiento) {
+    this.fechaNacimiento = fechaNacimiento;
+  }
 
   public String getNombre() {
     return nombre;
@@ -71,5 +90,14 @@ public class Usuario {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+
+  public Integer getCuenta() {
+    return cuenta;
+  }
+
+  public void setCuenta(Integer cuenta) {
+    this.cuenta = cuenta;
   }
 }
