@@ -4,6 +4,7 @@ import com.bolsadeideas.form.app.validation.IdentificadorRegex;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -33,6 +34,18 @@ public class Usuario {
   @Max(5000)
   private Integer cuenta;
 
+
+
+  @NotEmpty
+  private String pais;
+
+  public String getPais() {
+    return pais;
+  }
+
+  public void setPais(String pais) {
+    this.pais = pais;
+  }
   @NotNull
  // @Past
  // @DateTimeFormat(pattern = "yyyy-MM-dd")
