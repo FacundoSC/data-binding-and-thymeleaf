@@ -6,6 +6,6 @@ import jakarta.validation.ConstraintValidatorContext;
 public class IdentificadorRegexValidador implements ConstraintValidator<IdentificadorRegex, String> {
   @Override
   public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
-    return value.matches("[0-9]{2}[.][\\\\d]{3}[.][\\\\d]{3}[-][a-zA-Z]{1}");
+    return value.matches("[\\d]{2}[.][\\d]{3}[.][\\d]{3}[-][a-z;A-Z]{1}");
   }
 }
