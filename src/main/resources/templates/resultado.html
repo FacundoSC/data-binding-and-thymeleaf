@@ -22,6 +22,9 @@
       <li th:text="${user.username}"></li>
       <li th:text="${user.password}"></li>
       <li th:text="${user.email}"></li>
+      <li th:text="${user.pais}"></li>
+      <li th:text="${#dates.format(user.fechaNacimiento,'dd/MM/yyyy')}"></li>
+
   </ul>
 
 
