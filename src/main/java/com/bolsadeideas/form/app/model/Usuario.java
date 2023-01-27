@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +34,8 @@ public class Usuario {
   private Integer cuenta;
 
   @NotNull
-  @DateTimeFormat(pattern = "yyyy/MM/dd")
+ // @Past
+ // @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date fechaNacimiento;
 
   public Date getFechaNacimiento() {
