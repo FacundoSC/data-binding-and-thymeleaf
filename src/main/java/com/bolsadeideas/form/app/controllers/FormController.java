@@ -7,7 +7,9 @@ import jakarta.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,15 @@ public class FormController {
     return Arrays.asList("España","Mexico", "Argentina", "Chile");
   }
 
+
+  @ModelAttribute("paisesMap")
+  public Map<String,String> paisesMap(){
+    Map<String,String> paises = new HashMap<String, String>();
+    paises.put("ES", "España");
+    paises.put("ARG","Argentina");
+    paises.put("MX", "Mexico");
+    return  paises;
+  }
 
   @GetMapping("/form")
   public String form(Model model) {
