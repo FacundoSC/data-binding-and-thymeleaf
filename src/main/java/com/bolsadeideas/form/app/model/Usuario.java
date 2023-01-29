@@ -1,15 +1,13 @@
 package com.bolsadeideas.form.app.model;
 
 import com.bolsadeideas.form.app.validation.IdentificadorRegex;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.util.Date;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Usuario {
 
@@ -35,17 +33,10 @@ public class Usuario {
   private Integer cuenta;
 
 
+  @Valid
+  private Pais pais;
 
-  @NotEmpty
-  private String pais;
 
-  public String getPais() {
-    return pais;
-  }
-
-  public void setPais(String pais) {
-    this.pais = pais;
-  }
   @NotNull
  // @Past
  // @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -114,5 +105,13 @@ public class Usuario {
 
   public void setCuenta(Integer cuenta) {
     this.cuenta = cuenta;
+  }
+
+  public Pais getPais() {
+    return pais;
+  }
+
+  public void setPais(Pais pais) {
+    this.pais = pais;
   }
 }

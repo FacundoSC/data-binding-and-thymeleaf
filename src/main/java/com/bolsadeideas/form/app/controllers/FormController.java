@@ -1,7 +1,9 @@
 package com.bolsadeideas.form.app.controllers;
 
 import com.bolsadeideas.form.app.editor.NombreMayusculaEditor;
+import com.bolsadeideas.form.app.model.Pais;
 import com.bolsadeideas.form.app.model.Usuario;
+import com.bolsadeideas.form.app.services.PaisService;
 import com.bolsadeideas.form.app.validation.UsuarioValidation;
 import jakarta.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -29,6 +31,9 @@ public class FormController {
   @Autowired
   private UsuarioValidation validation;
 
+  @Autowired
+  private PaisService paisService;
+
 
   @InitBinder
   public void initBinder(WebDataBinder binder){
@@ -39,9 +44,6 @@ public class FormController {
     binder.registerCustomEditor(String.class,"nombre" ,new NombreMayusculaEditor());
   }
 
-
-
-
   @ModelAttribute("paises")
   public List<String> paises(){
     return Arrays.asList("España","Mexico", "Argentina", "Chile");
@@ -49,13 +51,19 @@ public class FormController {
 
 
   @ModelAttribute("paisesMap")
-  public Map<String,String> paisesMap(){
-    Map<String,String> paises = new HashMap<String, String>();
+  public Map<String, String> paisesMap() {
+    Map<String, String> paises = new HashMap<String, String>();
     paises.put("ES", "España");
-    paises.put("ARG","Argentina");
+    paises.put("ARG", "Argentina");
     paises.put("MX", "Mexico");
-    return  paises;
+    return paises;
   }
+
+  @ModelAttribute("listaPaises")
+  public List<Pais> listaPaises() {
+    return paisService.listar();
+  }
+
 
   @GetMapping("/form")
   public String form(Model model) {
